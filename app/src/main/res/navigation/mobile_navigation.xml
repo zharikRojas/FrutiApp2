@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/fragment_lista_frutas">
+
+
+    <fragment
+        android:id="@+id/fragment_lista_frutas"
+        android:name="com.example.parcial2.ListaFrutasFragment"
+        android:label="Lista Frutas">
+        <!-- Define cualquier argumento necesario aquí -->
+        <action
+            android:id="@+id/action_listaFrutasFragment_to_detalleFrutasFragment"
+            app:destination="@id/fragment_detalle_fruta" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/fragment_detalle_fruta"
+        android:name="com.example.parcial2.DetalleFrutasFragment"
+        android:label="Detalle Fruta">
+        <argument
+            android:name="frutaId"
+            app:argType="string"/>
+    </fragment>
+
+</navigation>
