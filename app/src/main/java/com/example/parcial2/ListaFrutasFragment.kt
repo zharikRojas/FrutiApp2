@@ -1,11 +1,12 @@
 package com.example.parcial2
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,8 +44,11 @@ class ListaFrutasFragment : Fragment() {
 
         frutasAdapter.setOnItemClickListener { fruta ->
             // Navegar al detalle de la fruta pasando el ID de la fruta
-            val bundle = bundleOf("frutaId" to fruta.id.toString())
-            findNavController().navigate(R.id.action_listaFrutasFragment_to_detalleFrutasFragment, bundle)
+            val bundle = bundleOf("frutaId" to fruta.id.toInt())
+            //val bundle = Bundle()
+            //bundle.putString("frutaId", fruta.id.toString())
+            findNavController().navigate(R.id.action_listaFrutasFragment_to_detalleFrutasFragment,bundle)
+            Log.d("FRUTAID", fruta.id.toString())
         }
 
 

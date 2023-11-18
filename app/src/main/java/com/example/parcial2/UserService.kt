@@ -1,6 +1,5 @@
 package com.example.parcial2
 
-import android.telecom.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 

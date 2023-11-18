@@ -13,4 +13,33 @@
         android:layout_height="wrap_content"
         android:text="Detalle Fruta"/>
 
+    <TextView
+        android:id="@+id/textViewCalories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calorias: " />
+
+    <TextView
+        android:id="@+id/textViewFat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grasa: " />
+
+    <TextView
+        android:id="@+id/textViewSugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Azucar: " />
+
+    <TextView
+        android:id="@+id/textViewCarbo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Carbohidratos: " />
+
+    <TextView
+        android:id="@+id/textViewProtein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Proteinas: " />
 </LinearLayout>

@@ -14,6 +14,7 @@
         <action
             android:id="@+id/action_listaFrutasFragment_to_detalleFrutasFragment"
             app:destination="@id/fragment_detalle_fruta" />
+
     </fragment>
 
 
@@ -23,7 +24,7 @@
         android:label="Detalle Fruta">
         <argument
             android:name="frutaId"
-            app:argType="string"/>
+            app:argType="integer"/>
     </fragment>
 
 </navigation>
