@@ -47,7 +47,7 @@ class FrutasListaViewModel: ViewModel() {
         val filteredList = frutas.value?.filter { fruta ->
             fruta.nombre.contains(name, ignoreCase = true)
         }
-        _frutas.value = filteredList
+        _filteredFrutas.value = filteredList
 
     }
 

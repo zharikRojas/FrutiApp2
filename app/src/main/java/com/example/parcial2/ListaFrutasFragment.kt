@@ -40,6 +40,7 @@ class ListaFrutasFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         spinnerFilter = binding.nutrientSpinner
+        val frutasAdapter = FrutasAdapter()
         val filterAdapter = ArrayAdapter.createFromResource(
             requireContext(),
             R.array.filter_options,
@@ -61,6 +62,12 @@ class ListaFrutasFragment : Fragment() {
                     viewModel.fetchFruits("Calorias")
                 }else{
                     viewModel.filterFruitsByName(searchText)
+                    viewModel.filteredFrutas.observe(viewLifecycleOwner, { frutas ->
+                        frutas?.let {
+                            frutasAdapter.actualizarDatos(it)
+                            binding.txtTotal.text="Total Resultados: "+frutasAdapter.itemCount.toString()
+                        }
+                    })
                 }
 
             }
@@ -71,7 +78,7 @@ class ListaFrutasFragment : Fragment() {
             }
         })
 
-        val frutasAdapter = FrutasAdapter()
+
 
         binding.recyclerViewFruits.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewFruits.adapter = frutasAdapter
