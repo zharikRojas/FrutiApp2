@@ -6,6 +6,25 @@
     android:orientation="vertical"
     tools:context=".DetalleFrutasFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/purple_200"
+        android:theme="?attr/actionBarTheme">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="50sp"
+            android:layout_height="55sp"
+            android:layout_gravity="left"
+            android:background="@color/purple_200"
+            android:src="@drawable/haciaatras">
+
+        </ImageButton>
+
+
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/textViewDetail"

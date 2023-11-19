@@ -1,12 +1,15 @@
 package com.example.parcial2
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -18,6 +21,7 @@ class ListaFrutasFragment : Fragment() {
 
     private var _binding: FragmentListaFrutasBinding? = null
     private lateinit var spinnerFilter: Spinner
+    private lateinit var editTextSearch: EditText
     private val binding get() = _binding!!
 
     private val viewModel by lazy {
@@ -45,6 +49,27 @@ class ListaFrutasFragment : Fragment() {
         spinnerFilter.adapter = filterAdapter
 
 
+        editTextSearch = binding.editTextSearch
+        editTextSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // No es necesario implementar nada aquí
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val searchText = s.toString().trim()
+                if (searchText.isEmpty()){
+                    viewModel.fetchFruits("Calorias")
+                }else{
+                    viewModel.filterFruitsByName(searchText)
+                }
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+
+            }
+        })
 
         val frutasAdapter = FrutasAdapter()
 

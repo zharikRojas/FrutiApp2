@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.parcial2.databinding.FragmentDetalleFrutasBinding
 
 
@@ -31,19 +32,21 @@ class DetalleFrutasFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(DetalleFrutasViewModel::class.java)
 
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
         Log.e("Arguments", arguments.toString())
 
         val frutaObj = arguments?.getSerializable("fruta")
-        //val frutaId = frutaIdString?.toIntOrNull()
+
 
         Log.e("frutaidDetalleFrutas", frutaObj.toString())
-        viewModel.fetchNutricion(frutaObj as FrutasModel)
 
+        viewModel.fetchNutricion(frutaObj as FrutasModel)
         viewModel.nutricion.observe(viewLifecycleOwner, Observer { nutricion ->
             nutricion?.let {
                 actualizarUIUser(it)
             }
-
         })
     }
 

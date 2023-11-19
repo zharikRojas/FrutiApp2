@@ -9,6 +9,8 @@ import retrofit2.Response
 class FrutasListaViewModel: ViewModel() {
     val _frutas = MutableLiveData<List<FrutasModel>?>()
     val frutas: LiveData<List<FrutasModel>?> get() = _frutas
+    private val _filteredFrutas = MutableLiveData<List<FrutasModel>?>()
+    val filteredFrutas: MutableLiveData<List<FrutasModel>?> get() = _filteredFrutas
 
     private val userService = RetrofitHelper.getRetrofit().create(UserService::class.java)
 
@@ -33,13 +35,21 @@ class FrutasListaViewModel: ViewModel() {
           }
 
             override fun onFailure(call: retrofit2.Call<List<FrutasModel>>, t: Throwable) {
-                // Manejar error de fallo en la llamada
+
             }
         })
 
 
     }
 
+    fun filterFruitsByName(name:String){
+        Log.d("Filter", "Filtering by name: $name")
+        val filteredList = frutas.value?.filter { fruta ->
+            fruta.nombre.contains(name, ignoreCase = true)
+        }
+        _frutas.value = filteredList
+
+    }
 
 
 
