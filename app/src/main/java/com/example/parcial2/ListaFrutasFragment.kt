@@ -53,13 +53,15 @@ class ListaFrutasFragment : Fragment() {
         editTextSearch = binding.editTextSearch
         editTextSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // No es necesario implementar nada aquí
+
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val searchText = s.toString().trim()
                 if (searchText.isEmpty()){
-                    viewModel.fetchFruits("Ninguno")
+                    //viewModel.fetchFruits("Ninguno")
+                    val selectedFilter = resources.getStringArray(R.array.filter_options)[spinnerFilter.selectedItemPosition]
+                    viewModel.fetchFruits(selectedFilter)
                 }else{
                     viewModel.filterFruitsByName(searchText)
                     viewModel.filteredFrutas.observe(viewLifecycleOwner, { frutas ->
@@ -74,11 +76,8 @@ class ListaFrutasFragment : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {
 
-
             }
         })
-
-
 
         binding.recyclerViewFruits.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewFruits.adapter = frutasAdapter
@@ -94,8 +93,6 @@ class ListaFrutasFragment : Fragment() {
 
 
         frutasAdapter.setOnItemClickListener { fruta ->
-            // Navegar al detalle de la fruta pasando el ID de la fruta
-            //val bundle = bundleOf("frutaId" to fruta)
             val bundle2 = Bundle()
             val obj : FrutasModel= fruta
             bundle2.putSerializable("fruta", obj)
@@ -121,10 +118,9 @@ class ListaFrutasFragment : Fragment() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Opcional: lógica para manejar cuando no se selecciona nada
+
             }
         }
-        //viewModel.fetchFruits("calorias")
     }
 
 

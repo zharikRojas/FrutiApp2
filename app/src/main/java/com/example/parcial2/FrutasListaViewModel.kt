@@ -13,7 +13,8 @@ class FrutasListaViewModel: ViewModel() {
     val filteredFrutas: MutableLiveData<List<FrutasModel>?> get() = _filteredFrutas
 
     private val userService = RetrofitHelper.getRetrofit().create(UserService::class.java)
-
+    private val _currentSearchText = MutableLiveData<String>()
+    
     fun fetchFruits(orderBy: String){
         userService.getFrutas().enqueue(object : retrofit2.Callback<List<FrutasModel>>{
           override fun onResponse(call: retrofit2.Call<List<FrutasModel>>, response: Response<List<FrutasModel>>){
@@ -45,8 +46,12 @@ class FrutasListaViewModel: ViewModel() {
 
     fun filterFruitsByName(name:String){
         Log.d("Filter", "Filtering by name: $name")
-        val filteredList = frutas.value?.filter { fruta ->
-            fruta.nombre.contains(name, ignoreCase = true)
+        val filteredList = if (name.isEmpty()) {
+            frutas.value
+        } else {
+            frutas.value?.filter { fruta ->
+                fruta.nombre.contains(name, ignoreCase = true)
+            }
         }
         _filteredFrutas.value = filteredList
 
