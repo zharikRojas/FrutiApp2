@@ -1,4 +1,4 @@
-package com.example.parcial2
+package com.example.parcial2.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

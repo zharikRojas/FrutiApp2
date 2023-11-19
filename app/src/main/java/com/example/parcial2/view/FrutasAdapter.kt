@@ -1,10 +1,12 @@
-package com.example.parcial2
+package com.example.parcial2.view
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.parcial2.R
+import com.example.parcial2.model.FrutasModel
 
 class FrutasAdapter : RecyclerView.Adapter<FrutasAdapter.FrutaViewHolder>() {
 
@@ -15,7 +17,7 @@ class FrutasAdapter : RecyclerView.Adapter<FrutasAdapter.FrutaViewHolder>() {
         onItemClick = listener
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FrutaViewHolder{
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FrutaViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fruta_list_item, parent, false)
         return FrutaViewHolder(view)
     }

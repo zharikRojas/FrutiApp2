@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/fragment_lista_frutas"
-        android:name="com.example.parcial2.ListaFrutasFragment"
+        android:name="com.example.parcial2.view.ListaFrutasFragment"
         android:label="Lista Frutas">
         <!-- Define cualquier argumento necesario aquí -->
         <action
@@ -20,11 +20,11 @@
 
     <fragment
         android:id="@+id/fragment_detalle_fruta"
-        android:name="com.example.parcial2.DetalleFrutasFragment"
+        android:name="com.example.parcial2.view.DetalleFrutasFragment"
         android:label="Detalle Fruta">
         <argument
             android:name="fruta"
-            app:argType="com.example.parcial2.FrutasModel"/>
+            app:argType="com.example.parcial2.model.FrutasModel"/>
     </fragment>
 
 </navigation>
