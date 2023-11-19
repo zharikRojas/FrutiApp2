@@ -5,7 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -15,6 +17,7 @@ import com.example.parcial2.databinding.FragmentListaFrutasBinding
 class ListaFrutasFragment : Fragment() {
 
     private var _binding: FragmentListaFrutasBinding? = null
+    private lateinit var spinnerFilter: Spinner
     private val binding get() = _binding!!
 
     private val viewModel by lazy {
@@ -32,27 +35,64 @@ class ListaFrutasFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        spinnerFilter = binding.nutrientSpinner
+        val filterAdapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.filter_options,
+            android.R.layout.simple_spinner_item
+        )
+        filterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerFilter.adapter = filterAdapter
+
+
+
         val frutasAdapter = FrutasAdapter()
+
         binding.recyclerViewFruits.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewFruits.adapter = frutasAdapter
 
         viewModel.frutas.observe(viewLifecycleOwner, { frutas ->
             frutas?.let {
                 frutasAdapter.actualizarDatos(it)
+                binding.txtTotal.text="Total Resultados: "+frutasAdapter.itemCount.toString()
             }
         })
 
+
+
+
         frutasAdapter.setOnItemClickListener { fruta ->
             // Navegar al detalle de la fruta pasando el ID de la fruta
-            val bundle = bundleOf("frutaId" to fruta.id.toInt())
-            //val bundle = Bundle()
-            //bundle.putString("frutaId", fruta.id.toString())
-            findNavController().navigate(R.id.action_listaFrutasFragment_to_detalleFrutasFragment,bundle)
-            Log.d("FRUTAID", fruta.id.toString())
+            //val bundle = bundleOf("frutaId" to fruta)
+            val bundle2 = Bundle()
+            val obj : FrutasModel= fruta
+            bundle2.putSerializable("fruta", obj)
+            Log.d("FRUTAID", bundle2.toString())
+            findNavController().navigate(R.id.action_listaFrutasFragment_to_detalleFrutasFragment,bundle2)
+
         }
 
+         spinnerFilter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedFilter =
+                    resources.getStringArray(R.array.filter_options)[position]
+                Log.d("SelectedFilter", selectedFilter)
 
-        viewModel.fetchFruits()
+                // Llama a la función de ViewModel para cargar frutas basadas en el filtro seleccionado
+                viewModel.fetchFruits(selectedFilter)
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Opcional: lógica para manejar cuando no se selecciona nada
+            }
+        }
+        viewModel.fetchFruits("calorias")
     }
 
 
@@ -60,4 +100,6 @@ class ListaFrutasFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }

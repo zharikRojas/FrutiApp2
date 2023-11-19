@@ -5,18 +5,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ListaFrutasFragment">
-
+    <Spinner
+        android:id="@+id/nutrientSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="right"/>
     <!-- Agrega un EditText para búsqueda -->
     <EditText
         android:id="@+id/editTextSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Search by name"/>
-    <Spinner
-        android:id="@+id/spinnerFilter"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/txtTotal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-     />
+        android:textSize="18sp"
+        android:textColor="@color/white"/>
+
     <!-- android:entries="@array/nutritional_options"-->
     <!-- android:prompt="@string/select_nutritional_option"-->
     <TextView
@@ -24,7 +32,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textSize="18sp"
-    android:textColor="@android:color/black"/>
+    android:textColor="@color/white"/>
 
 <!-- Agrega un RecyclerView para mostrar la lista de frutas -->
     <androidx.recyclerview.widget.RecyclerView

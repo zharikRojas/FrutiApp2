@@ -22,7 +22,7 @@ class DetalleFrutasFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentDetalleFrutasBinding.inflate(inflater,container, false)
+        _binding = FragmentDetalleFrutasBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -31,49 +31,48 @@ class DetalleFrutasFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(DetalleFrutasViewModel::class.java)
 
-        val frutaId = arguments?.getInt("frutaId")
+        Log.e("Arguments", arguments.toString())
+
+        val frutaObj = arguments?.getSerializable("fruta")
         //val frutaId = frutaIdString?.toIntOrNull()
 
-        Log.e("frutaidDetalleFrutas", frutaId.toString())
-        if (frutaId != null && frutaId != -1){
+        Log.e("frutaidDetalleFrutas", frutaObj.toString())
+        viewModel.fetchNutricion(frutaObj as FrutasModel)
 
-            viewModel.fetchNutricion(frutaId)
-        }
-
-        viewModel.nutricion.observe(viewLifecycleOwner, Observer {nutricion ->
-            if (nutricion != null){
-                actualizarUIUser(nutricion)
+        viewModel.nutricion.observe(viewLifecycleOwner, Observer { nutricion ->
+            nutricion?.let {
+                actualizarUIUser(it)
             }
+
         })
-
-
     }
 
 
-    private fun actualizarUIUser(nutricion: NutricionModel?) {
-        // Actualiza la interfaz de usuario con los detalles de la nutrición
-        // (por ejemplo, actualiza textViews, imágenes, etc.).
+    private fun actualizarUIUser(nutricion: NutricionModel) {
 
-        // Ejemplo de cómo puedes acceder a los valores de la nutrición
-        val calories = nutricion?.calorias ?: "N/A"
-        val fat = nutricion?.grasa ?: "N/A"
-        val sugar = nutricion?.azucar ?: "N/A"
-        val carbohydrates = nutricion?.carbohidratos ?: "N/A"
-        val protein = nutricion?.proteina ?: "N/A"
+        Log.e("NUTRICION", nutricion.toString() )
+            val calories = nutricion.calorias
+            val fat = nutricion.grasa
+            val sugar = nutricion.azucar
+            val carbohydrates = nutricion.carbohidratos
+            val protein = nutricion.proteina
 
-        Log.e("Detalles fruta", "Cal: $calories, Fat: $fat, sugar: $sugar, carbo: $carbohydrates, prote: $protein")
-        // Ahora puedes usar estos valores para actualizar tu interfaz de usuario
+            Log.e(
+                "Detalles fruta",
+                "Cal: $calories, Fat: $fat, sugar: $sugar, carbo: $carbohydrates, prote: $protein"
+            )
 
-        binding.textViewCalories.text= calories.toString()
-        binding.textViewFat.text= fat.toString()
-        binding.textViewSugar.text= sugar.toString()
-        binding.textViewCarbo.text= carbohydrates.toString()
-        binding.textViewProtein.text= protein.toString()
+
+            binding.textViewCalories.text = "Calorias: "+calories.toString()
+            binding.textViewFat.text = "Grasa: " +fat.toString()
+            binding.textViewSugar.text = "Azucar: "+sugar.toString()
+            binding.textViewCarbo.text = "Carbohidratos: "+carbohydrates.toString()
+            binding.textViewProtein.text = "Proteina: "+protein.toString()
 
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+            super.onDestroyView()
+            _binding = null
+        }
     }
-}

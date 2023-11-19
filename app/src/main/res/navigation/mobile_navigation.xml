@@ -23,8 +23,8 @@
         android:name="com.example.parcial2.DetalleFrutasFragment"
         android:label="Detalle Fruta">
         <argument
-            android:name="frutaId"
-            app:argType="integer"/>
+            android:name="fruta"
+            app:argType="com.example.parcial2.FrutasModel"/>
     </fragment>
 
 </navigation>

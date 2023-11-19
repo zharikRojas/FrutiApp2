@@ -1,6 +1,7 @@
 package com.example.parcial2
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class FrutasModel(@SerializedName("name") val nombre: String,
                        @SerializedName("id") val id: String,
@@ -8,4 +9,4 @@ data class FrutasModel(@SerializedName("name") val nombre: String,
                        @SerializedName("order") val orden: String,
                        @SerializedName("genus") val genero: String,
                        @SerializedName("nutritions") val nutricion: NutricionModel
-)
+) : Serializable

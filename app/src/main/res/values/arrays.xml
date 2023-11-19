@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="filter_options">
+        <item>Calorias</item>
+        <item>Grasa</item>
+        <item>Azucar</item>
+        <item>Carbohidratos</item>
+        <item>Proteinas</item>
+    </string-array>
+</resources>
