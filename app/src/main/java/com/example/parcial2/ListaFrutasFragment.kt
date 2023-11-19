@@ -59,7 +59,7 @@ class ListaFrutasFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val searchText = s.toString().trim()
                 if (searchText.isEmpty()){
-                    viewModel.fetchFruits("Calorias")
+                    viewModel.fetchFruits("Ninguno")
                 }else{
                     viewModel.filterFruitsByName(searchText)
                     viewModel.filteredFrutas.observe(viewLifecycleOwner, { frutas ->
@@ -124,7 +124,7 @@ class ListaFrutasFragment : Fragment() {
                 // Opcional: lógica para manejar cuando no se selecciona nada
             }
         }
-        viewModel.fetchFruits("calorias")
+        //viewModel.fetchFruits("calorias")
     }
 
 

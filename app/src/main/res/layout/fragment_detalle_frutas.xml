@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/purple_200"
+        android:background="#FF5722"
         android:theme="?attr/actionBarTheme">
 
         <ImageButton
@@ -18,11 +18,21 @@
             android:layout_width="50sp"
             android:layout_height="55sp"
             android:layout_gravity="left"
-            android:background="@color/purple_200"
+            android:background="#FF5722"
             android:src="@drawable/haciaatras">
 
         </ImageButton>
 
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detalle Fruta"
+            android:textColor="#0F4C81"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="23sp"
+            />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -30,35 +40,53 @@
         android:id="@+id/textViewDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Detalle Fruta"/>
+        android:text="Nutrientes"
+        android:layout_marginTop="23sp"
+        android:textStyle="bold"
+        android:textSize="22sp"/>
 
     <TextView
         android:id="@+id/textViewCalories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calorias: " />
+        android:text="Calorias: "
+        android:textSize="19sp"
+        android:layout_gravity="center"
+        android:padding="5sp"/>
 
     <TextView
         android:id="@+id/textViewFat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Grasa: " />
+        android:text="Grasa: "
+        android:textSize="19sp"
+        android:layout_gravity="center"
+        android:padding="5sp"/>
 
     <TextView
         android:id="@+id/textViewSugar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Azucar: " />
+        android:text="Azucar: "
+        android:textSize="19sp"
+        android:layout_gravity="center"
+        android:padding="5sp"/>
 
     <TextView
         android:id="@+id/textViewCarbo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Carbohidratos: " />
+        android:text="Carbohidratos: "
+        android:textSize="19sp"
+        android:layout_gravity="center"
+        android:padding="5sp"/>
 
     <TextView
         android:id="@+id/textViewProtein"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Proteinas: " />
+        android:text="Proteinas: "
+        android:textSize="19sp"
+        android:layout_gravity="center"
+        android:padding="5sp"/>
 </LinearLayout>

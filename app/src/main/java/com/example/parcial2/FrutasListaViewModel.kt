@@ -21,6 +21,7 @@ class FrutasListaViewModel: ViewModel() {
                   val fruits = response.body()
                   if (fruits != null){
                       when(orderBy){
+                          "Ninguno" -> _frutas.value = fruits
                           "Calorias" -> _frutas.value = fruits.sortedByDescending{it.nutricion.calorias}
                           "Grasa" ->  _frutas.value = fruits.sortedByDescending{it.nutricion.grasa}
                           "Azucar"-> _frutas.value = fruits.sortedByDescending{it.nutricion.azucar}
