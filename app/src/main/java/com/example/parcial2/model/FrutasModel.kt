@@ -1,4 +1,4 @@
-package com.example.parcial2
+package com.example.parcial2.model
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

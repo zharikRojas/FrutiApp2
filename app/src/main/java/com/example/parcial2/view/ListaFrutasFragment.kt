@@ -1,4 +1,4 @@
-package com.example.parcial2
+package com.example.parcial2.view
 
 import android.os.Bundle
 import android.text.Editable
@@ -15,7 +15,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.parcial2.viewModel.FrutasListaViewModel
+import com.example.parcial2.R
 import com.example.parcial2.databinding.FragmentListaFrutasBinding
+import com.example.parcial2.model.FrutasModel
 
 class ListaFrutasFragment : Fragment() {
 
@@ -94,7 +97,7 @@ class ListaFrutasFragment : Fragment() {
 
         frutasAdapter.setOnItemClickListener { fruta ->
             val bundle2 = Bundle()
-            val obj : FrutasModel= fruta
+            val obj : FrutasModel = fruta
             bundle2.putSerializable("fruta", obj)
             Log.d("FRUTAID", bundle2.toString())
             findNavController().navigate(R.id.action_listaFrutasFragment_to_detalleFrutasFragment,bundle2)

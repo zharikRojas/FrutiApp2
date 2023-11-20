@@ -1,9 +1,12 @@
-package com.example.parcial2
+package com.example.parcial2.viewModel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.parcial2.model.RetrofitHelper
+import com.example.parcial2.model.UserService
+import com.example.parcial2.model.FrutasModel
 import retrofit2.Response
 
 class FrutasListaViewModel: ViewModel() {

@@ -1,5 +1,6 @@
-package com.example.parcial2
+package com.example.parcial2.model
 
+import com.example.parcial2.model.FrutasModel
 import retrofit2.http.GET
 import retrofit2.http.Path
 
